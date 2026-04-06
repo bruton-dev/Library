@@ -1890,7 +1890,7 @@ end
 			end
 			return Dropdown
 		end
-function splib:MakeNotification(Configs)
+function redzlib:MakeNotification(Configs)
 	local function ToColor3(val)
 		if typeof(val) == "ColorSequence" then
 			local ok, kp = pcall(function() return val.Keypoints[1] end)
