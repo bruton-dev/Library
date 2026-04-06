@@ -36,13 +36,13 @@ local redzlib = {
 		},
 		crystal = {			
     ["Color Hub 1"] = ColorSequence.new({
-        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(10, 15, 30)),
-        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(25, 45, 80)),
-        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(10, 15, 30))
+        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(30, 0, 0)),
+        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(120, 0, 0)),
+        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(30, 0, 0))
     }),
-    ["Color Hub 2"] = Color3.fromRGB(15, 20, 35),
-    ["Color Stroke"] = Color3.fromRGB(50, 80, 140),
-    ["Color Theme"] = Color3.fromRGB(0, 190, 255),
+    ["Color Hub 2"] = Color3.fromRGB(20, 0, 0),
+    ["Color Stroke"] = Color3.fromRGB(180, 0, 0),
+    ["Color Theme"] = Color3.fromRGB(255, 20, 40),
     ["Color Text"] = Color3.fromRGB(255, 255, 255),
     ["Color Dark Text"] = Color3.fromRGB(255, 255, 255)
 		},
