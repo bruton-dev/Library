@@ -820,7 +820,7 @@ local RotatingImage = Create("ImageLabel", WindowBackground, {
 	Position = UDim2.new(0.5, 0, 0.5, 0),
 	AnchorPoint = Vector2.new(0.5, 0.5),
 	BackgroundTransparency = 1,
-	Image = "rbxassetid://",
+	Image = "rbxassetid://95845861767820",
 	ImageTransparency = 0,
 	ScaleType = Enum.ScaleType.Crop,
 	Rotation = 0,
@@ -1890,6 +1890,214 @@ end
 			end
 			return Dropdown
 		end
+function splib:MakeNotification(Configs)
+	local function ToColor3(val)
+		if typeof(val) == "ColorSequence" then
+			local ok, kp = pcall(function() return val.Keypoints[1] end)
+			if ok and kp and kp.Value then
+				return kp.Value
+			end
+		elseif typeof(val) == "Color3" then
+			return val
+		end
+		return Color3.fromRGB(255, 255, 255)
+	end
+
+	if isNotificationCooldown then return end
+	isNotificationCooldown = true
+	task.delay(0.5, function()
+		isNotificationCooldown = false
+	end)
+
+	if type(Configs) == "string" then
+		Configs = { Name = Configs }
+	elseif type(Configs) ~= "table" then
+		Configs = {}
+	end
+	Configs.Name     = Configs.Name     or "Notification"
+	Configs.Content  = Configs.Content  or "This is a test."
+	Configs.Image    = Configs.Image    or "rbxassetid://4384403532"
+	Configs.Time     = tonumber(Configs.Time) or 4
+
+	if Configs.IsMobile and not isMobile then return end
+	if Configs.IsPC     and not isPC     then return end
+
+	local holder = self.NotificationHolder
+	if not holder or not holder.Parent then
+		local isMobileSize = isMobile and 150 or 225
+
+		holder = Create("Frame", ScreenGui, {
+			Name = "NotificationHolder",
+			AnchorPoint = Vector2.new(1, 1),
+			Position = UDim2.new(1, -20, 1, -20),
+			Size = UDim2.new(0, isMobileSize, 0, 0),
+			BackgroundTransparency = 1,
+			AutomaticSize = Enum.AutomaticSize.Y,
+			ZIndex = 9999,
+		})
+
+		Create("UIListLayout", holder, {
+			SortOrder = Enum.SortOrder.LayoutOrder,
+			VerticalAlignment = Enum.VerticalAlignment.Bottom,
+			Padding = UDim.new(0, 8),
+		})
+
+		self.NotificationHolder = holder
+	end
+
+	local layoutOrder = (#holder:GetChildren() or 0) + 1
+	local notifParent = Create("Frame", holder, {
+		Name = "NotifContainer",
+		Size = UDim2.new(1, 0, 0, 0),
+		BackgroundTransparency = 1,
+		AutomaticSize = Enum.AutomaticSize.Y,
+		LayoutOrder = layoutOrder,
+	})
+
+	local hub1 = ToColor3(Theme and Theme["Color Hub 1"])
+	local strokeClr = ToColor3(Theme and Theme["Color Stroke"])
+	local textClr = ToColor3(Theme and Theme["Color Text"])
+
+local notifFrame = Create("TextButton", notifParent, {
+    Name = "NotificationFrame",
+    BackgroundColor3 = hub1 or strokeClr or Color3.fromRGB(30,30,30),
+    BackgroundTransparency = 1,
+    Size = UDim2.new(1, 0, 0, 0),
+    AutomaticSize = Enum.AutomaticSize.Y,
+    ZIndex = 1000,
+    Text = "",
+})
+	InsertTheme(notifFrame, "Main")
+	Make("Corner", notifFrame, UDim.new(0.18, 0))
+
+	Create("UIStroke", notifFrame, {
+		Color = strokeClr or textClr or Color3.fromRGB(200,200,200),
+		Thickness = 1,
+		Transparency = 0,
+	})
+
+	Create("UIPadding", notifFrame, {
+		PaddingLeft = UDim.new(0, 12),
+		PaddingTop = UDim.new(0, 10),
+		PaddingRight = UDim.new(0, 12),
+		PaddingBottom = UDim.new(0, 10),
+	})
+
+	local icon = Create("ImageLabel", notifFrame, {
+		Name = "Icon",
+		Size = UDim2.new(0, 36, 0, 36),
+		Image = Configs.Image,
+		BackgroundTransparency = 1,
+		ScaleType = Enum.ScaleType.Fit,
+		Position = UDim2.new(0, 0, 0, 0),
+		ZIndex = 1001,
+	})
+	Make("Corner", icon, UDim.new(0.3, 0))
+
+	local title = Create("TextLabel", notifFrame, {
+		Name = "Title",
+		TextColor3 = textClr or Color3.new(1,1,1),
+		Position = UDim2.new(0, 40, 0, 0),
+		Size = UDim2.new(1, -44 - 36, 0, 20),
+		Font = Enum.Font.GothamBold,
+		TextSize = (isPC and 12) or 10,
+		Text = Configs.Name,
+		BackgroundTransparency = 1,
+		TextXAlignment = Enum.TextXAlignment.Left,
+		ZIndex = 1001,
+	})
+	InsertTheme(title, "Text")
+
+	local content = Create("TextLabel", notifFrame, {
+		Name = "Content",
+		TextColor3 = textClr or Color3.new(1,1,1),
+		Position = UDim2.new(0, 44, 0, 22),
+		Size = UDim2.new(1, -44 - 36, 0, 0),
+		Font = Enum.Font.Gotham,
+		TextSize = 14,
+		Text = tostring(Configs.Content),
+		TextWrapped = true,
+		BackgroundTransparency = 1,
+		AutomaticSize = Enum.AutomaticSize.Y,
+		ZIndex = 1001,
+	})
+	InsertTheme(content, "Text")
+
+	local timerText = Create("TextLabel", notifFrame, {
+		Name = "TimerText",
+		Size = UDim2.new(0, 34, 0, 20),
+		Position = UDim2.new(1, -25, 0, -6),
+		BackgroundTransparency = 1,
+		Font = Enum.Font.GothamBold,
+		TextSize = 14,
+		TextColor3 = textClr or Color3.new(1,1,1),
+		Text = tostring(math.ceil(Configs.Time)),
+		TextXAlignment = Enum.TextXAlignment.Center,
+		TextYAlignment = Enum.TextYAlignment.Center,
+		ZIndex = 1003,
+	})
+	InsertTheme(timerText, "Text")
+
+notifFrame.MouseButton1Click:Connect(function()
+    local closeTween = TweenService:Create(icon, TweenInfo.new(0.6), { ImageTransparency = 1 })
+    local frameTween = TweenService:Create(notifFrame, TweenInfo.new(0.6), { BackgroundTransparency = 0.75 })
+    
+    closeTween:Play()
+    frameTween:Play()
+    
+    task.delay(0.3, function()
+        local outTween = TweenService:Create(notifFrame, TweenInfo.new(0.6, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {
+            Position = UDim2.new(1, 0, 0, 0),
+            BackgroundTransparency = 1,
+        })
+        outTween:Play()
+        task.delay(0.6, function()
+            pcall(function() notifParent:Destroy() end)
+        end)
+    end)
+end)
+
+	notifFrame.Position = UDim2.new(1, 0, 0, 0)
+
+	TweenService:Create(notifFrame, TweenInfo.new(0.4, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {
+		Position = UDim2.new(0, 0, 0, 0),
+		BackgroundTransparency = 0,
+	}):Play()
+	TweenService:Create(icon, TweenInfo.new(0.32), { ImageTransparency = 0 }):Play()
+
+	task.spawn(function()
+		local total = math.max(0, tonumber(Configs.Time) or 4)
+		local t = total
+		local alive = true
+
+		local last = tick()
+		while t > 0 and alive do
+			local now = tick()
+			local dt = now - last
+			last = now
+			t = t - dt
+			pcall(function()
+				timerText.Text = tostring(math.ceil(math.max(0, t)))
+			end)
+			task.wait(0.1)
+		end
+
+		pcall(function()
+			if alive then
+				TweenService:Create(icon, TweenInfo.new(0.6), { ImageTransparency = 1 }):Play()
+				TweenService:Create(notifFrame, TweenInfo.new(0.6), { BackgroundTransparency = 0.75 }):Play()
+				task.wait(0.3)
+				local out = TweenService:Create(notifFrame, TweenInfo.new(0.6, Enum.EasingStyle.Quint, Enum.EasingDirection.In), {
+					Position = UDim2.new(1, 0, 0, 0),
+					BackgroundTransparency = 1,
+				})
+				out:Play()
+				task.wait(0.6)
+				pcall(function() notifParent:Destroy() end)
+			end
+		end)
+	end)
+end
 	
 		function Tab:AddLabel(Configs)
     local Type = Configs[1] or Configs.Type or "Text"
