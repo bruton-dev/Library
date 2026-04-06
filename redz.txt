@@ -776,7 +776,7 @@ function redzlib:MakeWindow(Configs)
 		BackgroundTransparency = 0.03,
 		Name = "Hub"
 	}), "Main")
-Local RunService = game:GetService("RunService")
+local RunService = game:GetService("RunService")
 
 local WindowBackground = Create("Frame", MainFrame, {
 	Name = "WindowBackground",
@@ -1172,7 +1172,7 @@ end)
     end
   end
   
-Local ContainerList = {}
+local ContainerList = {}
 function Window:MakeTab(paste, Configs)
 if type(paste) == "table" then Configs = paste end
 local TName = Configs[1] or Configs.Title or "Tab!"
