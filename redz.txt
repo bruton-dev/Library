@@ -776,13 +776,13 @@ function redzlib:MakeWindow(Configs)
 		BackgroundTransparency = 0.03,
 		Name = "Hub"
 	}), "Main")
-local RunService = game:GetService("RunService")
+Local RunService = game:GetService("RunService")
 
 local WindowBackground = Create("Frame", MainFrame, {
 	Name = "WindowBackground",
 	Size = UDim2.new(1, 0, 1, 0),
 	Position = UDim2.new(0, 0, 0, 0),
-	BackgroundColor3 = Color3.fromRGB(10, 15, 25),
+	BackgroundColor3 = Color3.fromRGB(15, 0, 0),
 	BackgroundTransparency = 0,
 	ZIndex = 0
 })
@@ -807,9 +807,9 @@ BorderStroke.Parent = BorderFrame
 
 local BorderGradient = Instance.new("UIGradient")
 BorderGradient.Color = ColorSequence.new{
-	ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 180, 255)),
-	ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 255)),
-	ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 80, 150))
+	ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+	ColorSequenceKeypoint.new(0.5, Color3.fromRGB(150, 0, 0)),
+	ColorSequenceKeypoint.new(1, Color3.fromRGB(80, 0, 0))
 }
 BorderGradient.Rotation = 0
 BorderGradient.Parent = BorderStroke
@@ -820,7 +820,7 @@ local RotatingImage = Create("ImageLabel", WindowBackground, {
 	Position = UDim2.new(0.5, 0, 0.5, 0),
 	AnchorPoint = Vector2.new(0.5, 0.5),
 	BackgroundTransparency = 1,
-	Image = "rbxassetid://133022399715517",
+	Image = "rbxassetid://105753047659910",
 	ImageTransparency = 0,
 	ScaleType = Enum.ScaleType.Crop,
 	Rotation = 0,
@@ -834,7 +834,6 @@ local borderSpeed = 80
 RunService.Heartbeat:Connect(function(dt)
 	BorderGradient.Rotation = (BorderGradient.Rotation + borderSpeed * dt) % 360
 end)
-
 
 	Make("Gradient", MainFrame, {
 		Rotation = 45
@@ -1173,7 +1172,7 @@ end)
     end
   end
   
-local ContainerList = {}
+Local ContainerList = {}
 function Window:MakeTab(paste, Configs)
 if type(paste) == "table" then Configs = paste end
 local TName = Configs[1] or Configs.Title or "Tab!"
@@ -1197,9 +1196,9 @@ TabStroke.Parent = TabSelect
 
 local TabGradient = Instance.new("UIGradient")
 TabGradient.Color = ColorSequence.new{
-	ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 180, 255)),
-	ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 255, 255)),
-	ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 40, 80))
+	ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
+	ColorSequenceKeypoint.new(0.5, Color3.fromRGB(150, 0, 0)),
+	ColorSequenceKeypoint.new(1, Color3.fromRGB(60, 0, 0))
 }
 TabGradient.Rotation = 0
 TabGradient.Parent = TabStroke
@@ -1232,7 +1231,7 @@ Glow.Size = UDim2.new(2.2,0,2.2,0)
 Glow.Position = UDim2.new(-0.6,0,-0.6,0)
 Glow.BackgroundTransparency = 1
 Glow.Image = "rbxassetid://5028857084"
-Glow.ImageColor3 = Color3.fromRGB(0, 255, 255)
+Glow.ImageColor3 = Color3.fromRGB(255, 0, 0)
 Glow.ImageTransparency = 1
 Glow.ZIndex = LabelIcon.ZIndex - 1
 
@@ -1240,7 +1239,7 @@ local Selected = InsertTheme(Create("Frame", TabSelect, {
 	Size = FirstTab and UDim2.new(0,4,0,4) or UDim2.new(0,4,0,13),
 	Position = UDim2.new(0,1,0.5),
 	AnchorPoint = Vector2.new(0,0.5),
-	BackgroundColor3 = Color3.fromRGB(0, 220, 255),
+	BackgroundColor3 = Color3.fromRGB(255, 0, 0),
 	BackgroundTransparency = FirstTab and 1 or 0
 }), "Theme")
 Make("Corner", Selected, UDim.new(0.5,0))
@@ -1252,7 +1251,7 @@ local Container = InsertTheme(Create("ScrollingFrame", {
 	ScrollBarThickness = 1.5,
 	BackgroundTransparency = 1,
 	ScrollBarImageTransparency = 0.2,
-	ScrollBarImageColor3 = Color3.fromRGB(0, 220, 255),
+	ScrollBarImageColor3 = Color3.fromRGB(255, 0, 0),
 	AutomaticCanvasSize = "Y",
 	ScrollingDirection = "Y",
 	BorderSizePixel = 0,
