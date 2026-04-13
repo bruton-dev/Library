@@ -20,7 +20,7 @@ local redzLib = {
     ScrollSize = 160,
     TransparencyHub = 0.1
   },
-  Icons = loadstring(game:HttpGet("https://raw.githubusercontent.com/wx-sources/RedzLibV4/main/Icons.lua"))(),
+  Icons = loadstring(game:HttpGet("https://raw.githubusercontent.com/Davi999z/Cartola-Hub/refs/heads/main/icons.lua"))(),
   SaveForTheme = {
     Stroke = {},
     Buttons = {},
