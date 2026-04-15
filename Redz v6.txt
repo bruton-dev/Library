@@ -1,9 +1,9 @@
-
+-- مش انا صنعتها
 --[[
 
 	Created by Redz
 	Modified for Laelmano24
-  Background and frame by BRUTON
+  
 ]]
 local MarketplaceService = game:GetService("MarketplaceService")
 local UserInputService = game:GetService("UserInputService")
@@ -57,17 +57,17 @@ local redzlib = {
       ["Color Text"] = Color3.fromRGB(240, 240, 240),
       ["Color Dark Text"] = Color3.fromRGB(180, 180, 180)
     },
-    Green = {
+    bruton = {
       ["Color Hub 1"] = ColorSequence.new({
-        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(19, 97, 61)),
-        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(19, 97, 61)),
-        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(19, 97, 61))
+        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(45, 35, 30)),
+        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(60, 45, 40)),
+        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(45, 35, 30))
       }),
-      ["Color Hub 2"] = Color3.fromRGB(20, 93, 60),
-      ["Color Stroke"] = Color3.fromRGB(26, 119, 77),
-      ["Color Theme"] = Color3.fromRGB(50, 229, 148),
-      ["Color Text"] = Color3.fromRGB(243, 243, 243),
-      ["Color Dark Text"] = Color3.fromRGB(180, 180, 180)
+      ["Color Hub 2"] = Color3.fromRGB(35, 25, 20),
+      ["Color Stroke"] = Color3.fromRGB(80, 60, 50),
+      ["Color Theme"] = Color3.fromRGB(195, 145, 115),
+      ["Color Text"] = Color3.fromRGB(255, 255, 255),
+      ["Color Dark Text"] = Color3.fromRGB(255, 255, 255)
     },
     Troll = {
       ["Color Hub 1"] = ColorSequence.new({
@@ -89,7 +89,7 @@ local redzlib = {
   Save = {
     UISize = {434,247},
     TabSize = 160,
-    Theme = "Green"
+    Theme = "bruton"
   },
   Settings = {},
   Connection = {},
@@ -886,12 +886,12 @@ function redzlib:MakeWindow(Configs)
     Name = "Hub"
   }), "Main")
   local RunService = game:GetService("RunService")
--- BRUTON 
+
 local WindowBackground = Create("Frame", MainFrame, {
 	Name = "WindowBackground",
 	Size = UDim2.new(1, 0, 1, 0),
 	Position = UDim2.new(0, 0, 0, 0),
-	BackgroundColor3 = Color3.fromRGB(0, 20, 0),
+	BackgroundColor3 = Color3.fromRGB(45, 35, 30),
 	BackgroundTransparency = 1,
 	ZIndex = 0
 })
@@ -916,9 +916,9 @@ BorderStroke.Parent = BorderFrame
 
 local BorderGradient = Instance.new("UIGradient")
 BorderGradient.Color = ColorSequence.new{
-	ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),
-	ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 130, 0)),
-	ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 50, 0))
+	ColorSequenceKeypoint.new(0, Color3.fromRGB(195, 145, 115)),
+	ColorSequenceKeypoint.new(0.5, Color3.fromRGB(150, 105, 85)),
+	ColorSequenceKeypoint.new(1, Color3.fromRGB(90, 65, 55))
 }
 BorderGradient.Rotation = 0
 BorderGradient.Parent = BorderStroke
