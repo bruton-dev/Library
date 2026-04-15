@@ -1,8 +1,8 @@
-
+-- مش انا صنعتها
 --[[
 
 	Created by Redz
-	Modified for Laelmano24&bruton
+	Modified for Laelmano24
   
 ]]
 local MarketplaceService = game:GetService("MarketplaceService")
@@ -886,6 +886,7 @@ function redzlib:MakeWindow(Configs)
     Name = "Hub"
   }), "Main")
   local RunService = game:GetService("RunService")
+-- BRUTON Xx1
 local WindowBackground = Create("Frame", MainFrame, {
 	Name = "WindowBackground",
 	Size = UDim2.new(1, 0, 1, 0),
@@ -895,10 +896,14 @@ local WindowBackground = Create("Frame", MainFrame, {
 	ZIndex = 0
 })
 
-local BlurEffect = Instance.new("BlurGraphicEffect")
-BlurEffect.Parent = WindowBackground
-
 Make("Corner", WindowBackground)
+
+local BlurFrame = Instance.new("CanvasGroup")
+BlurFrame.Name = "BlurFrame"
+BlurFrame.Size = UDim2.new(1, 0, 1, 0)
+BlurFrame.BackgroundTransparency = 1
+BlurFrame.Parent = WindowBackground
+Instance.new("BlurGraphicEffect", BlurFrame)
 
 local BorderFrame = Instance.new("Frame")
 BorderFrame.Name = "BorderFrame"
@@ -915,7 +920,7 @@ BorderStroke.Thickness = 3
 BorderStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 BorderStroke.Color = Color3.new(1, 1, 1)
 BorderStroke.Parent = BorderFrame
--- BRUTON 1X1
+
 local BorderGradient = Instance.new("UIGradient")
 BorderGradient.Color = ColorSequence.new{
 	ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),
@@ -928,8 +933,11 @@ BorderGradient.Parent = BorderStroke
 local borderSpeed = 80
 
 RunService.Heartbeat:Connect(function(dt)
-	BorderGradient.Rotation = (BorderGradient.Rotation + borderSpeed * dt) % 360
+	if BorderGradient and BorderGradient.Parent then
+		BorderGradient.Rotation = (BorderGradient.Rotation + borderSpeed * dt) % 360
+	end
 end)
+
   Make("Gradient", MainFrame, {
     Rotation = 45
   })MakeDrag(MainFrame)
