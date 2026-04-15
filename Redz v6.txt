@@ -885,6 +885,51 @@ function redzlib:MakeWindow(Configs)
     BackgroundTransparency = 0.03,
     Name = "Hub"
   }), "Main")
+  local RunService = game:GetService("RunService")
+local WindowBackground = Create("Frame", MainFrame, {
+	Name = "WindowBackground",
+	Size = UDim2.new(1, 0, 1, 0),
+	Position = UDim2.new(0, 0, 0, 0),
+	BackgroundColor3 = Color3.fromRGB(0, 20, 0),
+	BackgroundTransparency = 0.5,
+	ZIndex = 0
+})
+
+local BlurEffect = Instance.new("BlurGraphicEffect")
+BlurEffect.Parent = WindowBackground
+
+Make("Corner", WindowBackground)
+
+local BorderFrame = Instance.new("Frame")
+BorderFrame.Name = "BorderFrame"
+BorderFrame.Size = UDim2.new(1, -4, 1, -4)
+BorderFrame.Position = UDim2.new(0, 2, 0, 2)
+BorderFrame.BackgroundTransparency = 1
+BorderFrame.ZIndex = 2
+BorderFrame.Parent = WindowBackground
+
+Make("Corner", BorderFrame)
+
+local BorderStroke = Instance.new("UIStroke")
+BorderStroke.Thickness = 3
+BorderStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+BorderStroke.Color = Color3.new(1, 1, 1)
+BorderStroke.Parent = BorderFrame
+-- BRUTON 1X1
+local BorderGradient = Instance.new("UIGradient")
+BorderGradient.Color = ColorSequence.new{
+	ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 255, 0)),
+	ColorSequenceKeypoint.new(0.5, Color3.fromRGB(0, 130, 0)),
+	ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 50, 0))
+}
+BorderGradient.Rotation = 0
+BorderGradient.Parent = BorderStroke
+
+local borderSpeed = 80
+
+RunService.Heartbeat:Connect(function(dt)
+	BorderGradient.Rotation = (BorderGradient.Rotation + borderSpeed * dt) % 360
+end)
   Make("Gradient", MainFrame, {
     Rotation = 45
   })MakeDrag(MainFrame)
