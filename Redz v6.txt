@@ -1,9 +1,9 @@
--- مش انا صنعتها
+
 --[[
 
 	Created by Redz
 	Modified for Laelmano24
-  
+  Background and frame by BRUTON
 ]]
 local MarketplaceService = game:GetService("MarketplaceService")
 local UserInputService = game:GetService("UserInputService")
