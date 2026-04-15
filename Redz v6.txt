@@ -42,8 +42,8 @@ local redzlib = {
       ["Color Hub 2"] = Color3.fromRGB(45, 45, 45),
       ["Color Stroke"] = Color3.fromRGB(65, 65, 65),
       ["Color Theme"] = Color3.fromRGB(65, 150, 255),
-      ["Color Text"] = Color3.fromRGB(245, 245, 245),
-      ["Color Dark Text"] = Color3.fromRGB(190, 190, 190)
+      ["Color Text"] = Color3.fromRGB(255, 255, 255),
+      ["Color Dark Text"] = Color3.fromRGB(255, 2555, 255)
     },
     Purple = {
       ["Color Hub 1"] = ColorSequence.new({
@@ -89,7 +89,7 @@ local redzlib = {
   Save = {
     UISize = {434,247},
     TabSize = 160,
-    Theme = "bruton"
+    Theme = "Dark"
   },
   Settings = {},
   Connection = {},
@@ -885,7 +885,7 @@ function redzlib:MakeWindow(Configs)
     BackgroundTransparency = 0.03,
     Name = "Hub"
   }), "Main")
-  local RunService = game:GetService("RunService")
+--[[  local RunService = game:GetService("RunService")
 
 local WindowBackground = Create("Frame", MainFrame, {
 	Name = "WindowBackground",
@@ -930,7 +930,7 @@ RunService.Heartbeat:Connect(function(dt)
 		BorderGradient.Rotation = (BorderGradient.Rotation + borderSpeed * dt) % 360
 	end
 end)
-
+]]
   Make("Gradient", MainFrame, {
     Rotation = 45
   })MakeDrag(MainFrame)
