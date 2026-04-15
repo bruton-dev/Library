@@ -886,7 +886,7 @@ function redzlib:MakeWindow(Configs)
     Name = "Hub"
   }), "Main")
   local RunService = game:GetService("RunService")
--- BRUTON Xx1
+-- BRUTON 
 local WindowBackground = Create("Frame", MainFrame, {
 	Name = "WindowBackground",
 	Size = UDim2.new(1, 0, 1, 0),
@@ -898,19 +898,12 @@ local WindowBackground = Create("Frame", MainFrame, {
 
 Make("Corner", WindowBackground)
 
-local BlurFrame = Instance.new("CanvasGroup")
-BlurFrame.Name = "BlurFrame"
-BlurFrame.Size = UDim2.new(1, 0, 1, 0)
-BlurFrame.BackgroundTransparency = 1
-BlurFrame.Parent = WindowBackground
-Instance.new("BlurGraphicEffect", BlurFrame)
-
 local BorderFrame = Instance.new("Frame")
 BorderFrame.Name = "BorderFrame"
 BorderFrame.Size = UDim2.new(1, -4, 1, -4)
 BorderFrame.Position = UDim2.new(0, 2, 0, 2)
 BorderFrame.BackgroundTransparency = 1
-BorderFrame.ZIndex = 2
+BorderFrame.ZIndex = 10
 BorderFrame.Parent = WindowBackground
 
 Make("Corner", BorderFrame)
