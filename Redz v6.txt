@@ -1,8 +1,8 @@
--- مش انا صنعتها
+
 --[[
 
 	Created by Redz
-	Modified for Laelmano24
+	Modified for Laelmano24&bruton
   
 ]]
 local MarketplaceService = game:GetService("MarketplaceService")
