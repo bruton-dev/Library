@@ -1789,11 +1789,6 @@ end
 
 	local ParticleConnection = nil
 
-	-- ══════════════════════════════════════════
-	--  SISTEMA DE BACKGROUND — Partículas ou Imagem
-	-- ══════════════════════════════════════════
-
-	-- Frame para imagem de fundo
 	local BackgroundImage = Create("ImageLabel", ParticleContainer, {
 		Size = UDim2.new(1, 0, 1, 0),
 		Position = UDim2.new(0, 0, 0, 0),
@@ -1804,7 +1799,6 @@ end
 		Visible = false
 	})
 
-	-- Overlay escuro sobre a imagem
 	local BackgroundDim = Create("Frame", ParticleContainer, {
 		Size = UDim2.new(1, 0, 1, 0),
 		BackgroundColor3 = Color3.fromRGB(0, 0, 0),
@@ -1966,24 +1960,22 @@ end
 		MainFrame.Visible = not MainFrame.Visible
 	end
 	
-	-- ══════════════════════════════════════════
-	--  Window:SetBackground(mode, configs?)
-	--
-	--  Modos:
-	--    "Particles"  → sistema de partículas animadas
-	--    "Image"      → imagem de fundo estática
-	--    "None"       → desliga tudo
-	--
-	--  Exemplos:
-	--    Window:SetBackground("Particles")
-	--    Window:SetBackground("Image", "rbxassetid://XXXXXXX")
-	--    Window:SetBackground("Image", {
-	--        URL          = "rbxassetid://XXXXXXX",
-	--        Transparency = 0.3,   -- da imagem  (0 = opaca, 1 = invisível)
-	--        Dim          = 0.5,   -- escurecimento por cima (0 = sem, 1 = preto)
-	--    })
-	--    Window:SetBackground("None")
-	-- ══════════════════════════════════════════
+	 Window:SetBackground(mode, configs?)
+	
+	Modos:
+	  "Particles"  
+	"Image"      
+	"None" 
+	
+	 Exemplos:
+	 Window:SetBackground("Particles")
+	 Window:SetBackground("Image", "rbxassetid://XXXXXXX")
+	Window:SetBackground("Image", {
+	   URL          = "rbxassetid://105753047659910",
+	   Transparency = 0.3,   
+	    Dim          = 0.5,   
+	})
+	Window:SetBackground("None")
 	function Window:SetBackground(mode, configs)
 		if mode == "Particles" then
 			StartParticles()
@@ -2009,7 +2001,7 @@ end
 		end
 	end
 
-	-- mantém compatibilidade com código antigo
+
 	function Window:SetThemeParticles(enabled)
 		Window:SetBackground(enabled and "Particles" or "None")
 	end
